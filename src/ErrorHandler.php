@@ -11,9 +11,9 @@
 
 declare(strict_types=1);
 
-namespace tourBase\Core\ErrorHandler;
+namespace DavidLienhard\ErrorHandler;
 
-use \tourBase\Core\ErrorHandler\ErrorHandlerInterface;
+use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
 
 /**
  * class for improved error handling and logging
