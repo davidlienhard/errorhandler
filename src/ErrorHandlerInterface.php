@@ -106,4 +106,42 @@ interface ErrorHandlerInterface
      * @return          bool
      */
     public static function logException(\Throwable $t) : bool;
+
+
+    /**
+     * method to log an a 404 request
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.0, 16.11.2020
+     * @since           1.0.0, 16.11.2020, created
+     * @copyright       tourasia
+     * @return          bool
+     */
+    public static function logNotFound();
+
+
+    /**
+     * method to log a failed login
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.0, 16.11.2020
+     * @since           1.0.0, 16.11.2020, created
+     * @copyright       tourasia
+     * @param           string          $username       username used for login
+     * @return          bool
+     */
+    public static function logFailedLogin(string $username);
+
+
+    /**
+     * sets the folder to log to
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.0, 16.11.2020
+     * @since           1.0.0, 16.11.2020, created
+     * @copyright       tourasia
+     * @param           string          $logFolder      folder to write logfiles to
+     * @return          void
+     */
+    public static function setLogFolder(string $logFolder) : void;
 }

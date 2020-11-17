@@ -26,6 +26,13 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
 class ErrorHandler implements ErrorHandlerInterface
 {
     /**
+     * main logfolder
+     * defaults to current folder
+     * @var     string
+     */
+    public static $logFolder = ".";
+
+    /**
      * sets itself as error handler
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
@@ -55,6 +62,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * @param           string          $errmessage     an optional errormessage
      * @return          bool
      * @uses            ISDEV
+     * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
      * @uses            self::getErrorCode()
      */
@@ -65,8 +73,7 @@ class ErrorHandler implements ErrorHandlerInterface
         int $errno,
         string $errmessage = ""
     ) : bool {
-        $baseLogFolder = defined("TB_PATH_LOG") ? TB_PATH_LOG : dirname(__DIR__, 3) . "/_log/";
-        $logFolder = $baseLogFolder."php/".date("Y")."/".date("m")."/";
+        $logFolder = self::$logFolder."/php/".date("Y")."/".date("m")."/";
         $logFile = "php_".date("Y_m_d").".log";
 
         $client = isset($_SERVER['REMOTE_ADDR']) ? "[ client ".$_SERVER['REMOTE_ADDR']." ] " : "";
@@ -220,11 +227,12 @@ class ErrorHandler implements ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @return          bool
+     * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
      */
     public static function logNotFound()
     {
-        $logFolder = dirname(__DIR__, 3) . "/_log/404/".date("Y")."/".date("m")."/";
+        $logFolder = self::$logFolder."/404/".date("Y")."/".date("m")."/";
         $logFile = "404_".date("Y_m_d").".log";
 
         $client = isset($_SERVER['REMOTE_ADDR']) ? "[ client ".$_SERVER['REMOTE_ADDR']." ] " : "";
@@ -271,11 +279,12 @@ class ErrorHandler implements ErrorHandlerInterface
      * @copyright       tourasia
      * @param           string          $username       username used for login
      * @return          bool
+     * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
      */
     public static function logFailedLogin(string $username)
     {
-        $logFolder = dirname(__DIR__, 3) . "/_log/login/".date("Y")."/".date("m")."/";
+        $logFolder = self::$logFolder."/login/".date("Y")."/".date("m")."/";
         $logFile = "login_".date("Y_m_d").".log";
 
         $client = isset($_SERVER['REMOTE_ADDR']) ? "[ client ".$_SERVER['REMOTE_ADDR']." ] " : "";
@@ -305,6 +314,23 @@ class ErrorHandler implements ErrorHandlerInterface
 
         fclose($fp);
         return true;
+    }
+
+
+    /**
+     * sets the folder to log to
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.0, 16.11.2020
+     * @since           1.0.0, 16.11.2020, created
+     * @copyright       tourasia
+     * @param           string          $logFolder      folder to write logfiles to
+     * @return          void
+     * @uses            self::$logFolder
+     */
+    public static function setLogFolder(string $logFolder) : void
+    {
+        self::$logFolder = $logFolder;
     }
 
 
