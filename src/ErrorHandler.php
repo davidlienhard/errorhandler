@@ -4,7 +4,7 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.0, 16.11.2020
+ * @version         1.0.1, 30.11.2020
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -19,7 +19,7 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
  * class for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.0, 16.11.2020
+ * @version         1.0.1, 30.11.2020
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -52,7 +52,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * writes the given data into a logfile
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
+     * @version         1.0.1, 30.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $errstr         the error string
@@ -76,7 +76,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $logFolder = self::$logFolder."/php/".date("Y")."/".date("m")."/";
         $logFile = "php_".date("Y_m_d").".log";
 
-        $client = isset($_SERVER['REMOTE_ADDR']) ? "[ client ".$_SERVER['REMOTE_ADDR']." ] " : "";
+        $client = $this->getIp() !== "" ? "[ client ".$this->getIp()." ] " : "";
         $referer = isset($_SERVER['HTTP_REFERER']) ? ", referer: ".$_SERVER['HTTP_REFERER']." " : "";
         $requestUrl = self::getRequestUrl();
         $requestUrl = $requestUrl !== "" ? "\t".$requestUrl."\n" : "";
@@ -223,7 +223,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * method to log an a 404 request
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
+     * @version         1.0.1, 30.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @return          bool
@@ -235,7 +235,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $logFolder = self::$logFolder."/404/".date("Y")."/".date("m")."/";
         $logFile = "404_".date("Y_m_d").".log";
 
-        $client = isset($_SERVER['REMOTE_ADDR']) ? "[ client ".$_SERVER['REMOTE_ADDR']." ] " : "";
+        $client = $this->getIp() !== "" ? "[ client ".$this->getIp()." ] " : "";
         $requestUrl = self::getRequestUrl();
         $requestMethod = isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] !== "" ? " (".$_SERVER['REQUEST_METHOD'].")" : "";
         $referer = isset($_SERVER['HTTP_REFERER']) ? ", referer: ".$_SERVER['HTTP_REFERER']." " : "";
@@ -274,7 +274,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * method to log a failed login
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
+     * @version         1.0.1, 30.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $username       username used for login
@@ -287,7 +287,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $logFolder = self::$logFolder."/login/".date("Y")."/".date("m")."/";
         $logFile = "login_".date("Y_m_d").".log";
 
-        $client = isset($_SERVER['REMOTE_ADDR']) ? "[ client ".$_SERVER['REMOTE_ADDR']." ] " : "";
+        $client = $this->getIp() !== "" ? "[ client ".$this->getIp()." ] " : "";
         $referer = isset($_SERVER['HTTP_REFERER']) ? " referer: ".$_SERVER['HTTP_REFERER']." " : "";
 
         $line =
@@ -435,5 +435,20 @@ class ErrorHandler implements ErrorHandlerInterface
             32767 => "All" ];
 
         return $errorTranslation[$errno] ?? "";
+    }
+
+
+    /**
+     * returns the clients ip-address
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.1, 30.11.2020
+     * @since           1.0.1, 30.11.2020, created
+     * @copyright       tourasia
+     * @return          string
+     */
+    private function getIp() : string
+    {
+        return $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? $_SERVER['HTTP_CLIENT_IP'] ?? "";
     }
 }
