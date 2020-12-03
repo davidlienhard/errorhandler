@@ -4,7 +4,7 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.2, 03.12.2020
+ * @version         1.0.3, 03.12.2020
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -19,7 +19,7 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
  * class for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.2, 03.12.2020
+ * @version         1.0.3, 03.12.2020
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -442,12 +442,12 @@ class ErrorHandler implements ErrorHandlerInterface
      * returns the clients ip-address
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.1, 30.11.2020
+     * @version         1.0.3, 03.12.2020
      * @since           1.0.1, 30.11.2020, created
      * @copyright       tourasia
      * @return          string
      */
-    private function getIp() : string
+    private static function getIp() : string
     {
         return $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? $_SERVER['HTTP_CLIENT_IP'] ?? "";
     }
