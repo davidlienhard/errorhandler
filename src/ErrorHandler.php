@@ -4,7 +4,7 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.3, 03.12.2020
+ * @version         1.0.4, 16.12.2020
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -19,7 +19,7 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
  * class for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.3, 03.12.2020
+ * @version         1.0.4, 16.12.2020
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -122,7 +122,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * callback function for set_error_handler. passes date on to logError
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
+     * @version         1.0.4, 16.12.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           int             $errno          an error number
@@ -139,7 +139,7 @@ class ErrorHandler implements ErrorHandlerInterface
         string $errstr,
         string $errfile,
         int $errline,
-        array $errcontext
+        array $errcontext = [ ]
     ) : bool {
         if (error_reporting() == 0) {
             return true;
