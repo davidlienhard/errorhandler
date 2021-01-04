@@ -4,7 +4,7 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.4, 16.12.2020
+ * @version         1.0.5, 04.01.2021
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -19,7 +19,7 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
  * class for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.4, 16.12.2020
+ * @version         1.0.5, 04.01.2021
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -31,6 +31,12 @@ class ErrorHandler implements ErrorHandlerInterface
      * @var     string
      */
     public static $logFolder = ".";
+
+    /**
+     * whether to print errors or not
+     * @var     bool
+     */
+    public static $printErrors = false;
 
     /**
      * sets itself as error handler
@@ -52,7 +58,7 @@ class ErrorHandler implements ErrorHandlerInterface
      * writes the given data into a logfile
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.2, 03.12.2020
+     * @version         1.0.5, 04.01.2021
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $errstr         the error string
@@ -93,7 +99,7 @@ class ErrorHandler implements ErrorHandlerInterface
             $referer.
             $errorMessage."\n";
 
-        if (defined("ISDEV") && ISDEV) {
+        if (self::$printErrors) {
             echo $line;
         }
 
@@ -331,6 +337,23 @@ class ErrorHandler implements ErrorHandlerInterface
     public static function setLogFolder(string $logFolder) : void
     {
         self::$logFolder = $logFolder;
+    }
+
+
+    /**
+     * whether to print errors or not
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.5, 04.01.2021
+     * @since           1.0.5, 04.01.2021, created
+     * @copyright       tourasia
+     * @param           bool            $printErrors    whether to print errors or not
+     * @return          void
+     * @uses            self::$printErrors
+     */
+    public static function printErrors(bool $printErrors) : void
+    {
+        self::$printErrors = $printErrors;
     }
 
 
