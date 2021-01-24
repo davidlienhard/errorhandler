@@ -4,7 +4,7 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.4, 16.12.2020
+ * @version         1.0.6, 05.01.2021
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -17,7 +17,7 @@ namespace DavidLienhard\ErrorHandler;
  * interface for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.4, 16.12.2020
+ * @version         1.0.6, 05.01.2021
  * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
@@ -144,4 +144,18 @@ interface ErrorHandlerInterface
      * @return          void
      */
     public static function setLogFolder(string $logFolder) : void;
+
+
+    /**
+     * whether to print errors or not
+     *
+     * @author          David Lienhard <david.lienhard@tourasia.ch>
+     * @version         1.0.6, 05.01.2021
+     * @since           1.0.6, 05.01.2021, created
+     * @copyright       tourasia
+     * @param           bool            $printErrors    whether to print errors or not
+     * @return          void
+     * @uses            self::$printErrors
+     */
+    public static function printErrors(bool $printErrors) : void;
 }
