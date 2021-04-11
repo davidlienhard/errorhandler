@@ -30,7 +30,6 @@ interface ErrorHandlerInterface
      * @version         1.0.0, 16.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          void
      */
     public static function setHandler() : void;
 
@@ -47,7 +46,6 @@ interface ErrorHandlerInterface
      * @param           int             $errline        line in which the error happened
      * @param           int             $errno          an error number
      * @param           string          $errmessage     an optional errormessage
-     * @return          bool
      */
     public static function logErrors(
         string $errstr,
@@ -70,14 +68,13 @@ interface ErrorHandlerInterface
      * @param           string          $errfile        filename in which the error happened
      * @param           int             $errline        line in which the error happened
      * @param           array           $errcontext     an optional context data
-     * @return          bool
      */
     public static function onError(
         int $errno,
         string $errstr,
         string $errfile,
         int $errline,
-        array $errcontext = [ ]
+        array $errcontext = []
     ) : bool;
 
 
@@ -88,7 +85,6 @@ interface ErrorHandlerInterface
      * @version         1.0.0, 16.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          void
      * @uses            self::logErrors()
      * @uses            self::getRequestUrl()
      */
@@ -103,7 +99,6 @@ interface ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           \Throwable      $t              the exception/throwable to log
-     * @return          bool
      */
     public static function logException(\Throwable $t) : bool;
 
@@ -115,9 +110,8 @@ interface ErrorHandlerInterface
      * @version         1.0.0, 16.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          bool
      */
-    public static function logNotFound();
+    public static function logNotFound(): bool;
 
 
     /**
@@ -128,9 +122,8 @@ interface ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $username       username used for login
-     * @return          bool
      */
-    public static function logFailedLogin(string $username);
+    public static function logFailedLogin(string $username): bool;
 
 
     /**
@@ -141,7 +134,6 @@ interface ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $logFolder      folder to write logfiles to
-     * @return          void
      */
     public static function setLogFolder(string $logFolder) : void;
 
@@ -154,7 +146,6 @@ interface ErrorHandlerInterface
      * @since           1.0.6, 05.01.2021, created
      * @copyright       tourasia
      * @param           bool            $printErrors    whether to print errors or not
-     * @return          void
      * @uses            self::$printErrors
      */
     public static function printErrors(bool $printErrors) : void;
