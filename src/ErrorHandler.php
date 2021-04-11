@@ -28,15 +28,13 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * main logfolder
      * defaults to current folder
-     * @var     string
      */
-    public static $logFolder = ".";
+    public static string $logFolder = ".";
 
     /**
      * whether to print errors or not
-     * @var     bool
      */
-    public static $printErrors = false;
+    public static bool $printErrors = false;
 
     /**
      * sets itself as error handler
@@ -45,12 +43,11 @@ class ErrorHandler implements ErrorHandlerInterface
      * @version         1.0.0, 16.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          void
      */
     public static function setHandler() : void
     {
-        set_error_handler("\\".__CLASS__ ."::onError", E_ALL);
-        register_shutdown_function("\\".__CLASS__ ."::onShutdown");
+        set_error_handler("\\".__CLASS__."::onError", E_ALL);
+        register_shutdown_function("\\".__CLASS__."::onShutdown");
     }
 
 
@@ -66,7 +63,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @param           int             $errline        line in which the error happened
      * @param           int             $errno          an error number
      * @param           string          $errmessage     an optional errormessage
-     * @return          bool
      * @uses            ISDEV
      * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
@@ -86,15 +82,15 @@ class ErrorHandler implements ErrorHandlerInterface
         $referer = isset($_SERVER['HTTP_REFERER']) ? ", referer: ".$_SERVER['HTTP_REFERER']." " : "";
         $requestUrl = self::getRequestUrl();
         $requestUrl = $requestUrl !== "" ? "\t".$requestUrl."\n" : "";
-        $errorMessage = ($requestUrl != "" || $errmessage != "" ? "\n" : "") . $requestUrl. $errmessage;
+        $errorMessage = ($requestUrl != "" || $errmessage != "" ? "\n" : "").$requestUrl.$errmessage;
 
         $line =
             "[".date("r")."] ".
             $client.
-            "PHP " . self::getErrorCode($errno). ": ".
-            $errstr . ($errstr != "" ? " " : "").
-            "in ".$errfile . ":".
-            $errline . " ".
+            "PHP ".self::getErrorCode($errno).": ".
+            $errstr.($errstr != "" ? " " : "").
+            "in ".$errfile.":".
+            $errline." ".
             "(".$errno.")".
             $referer.
             $errorMessage."\n";
@@ -136,7 +132,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @param           string          $errfile        filename in which the error happened
      * @param           int             $errline        line in which the error happened
      * @param           array           $errcontext     an optional context data
-     * @return          bool
      * @uses            self::getTraceAsArray()
      * @uses            self::logErrors()
      */
@@ -145,7 +140,7 @@ class ErrorHandler implements ErrorHandlerInterface
         string $errstr,
         string $errfile,
         int $errline,
-        array $errcontext = [ ]
+        array $errcontext = []
     ) : bool {
         if (error_reporting() == 0) {
             return true;
@@ -153,7 +148,7 @@ class ErrorHandler implements ErrorHandlerInterface
 
         // get stack trace
         $e = new \Exception();
-        $errMessage = "\tStack trace:\n\t" . implode("\n\t", self::getTraceAsArray($e, true));
+        $errMessage = "\tStack trace:\n\t".implode("\n\t", self::getTraceAsArray($e, true));
         return self::logErrors(
             $errstr,
             $errfile,
@@ -171,7 +166,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @version         1.0.0, 16.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          void
      * @uses            self::getErrorCode()
      * @uses            self::logErrors()
      */
@@ -208,13 +202,12 @@ class ErrorHandler implements ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           \Throwable      $t              the exception/throwable to log
-     * @return          bool
      * @uses            self::getTraceAsArray()
      * @uses            self::logErrors()
      */
     public static function logException(\Throwable $t) : bool
     {
-        $errMessage = "\tStack trace:\n\t" . implode("\n\t", self::getTraceAsArray($t));
+        $errMessage = "\tStack trace:\n\t".implode("\n\t", self::getTraceAsArray($t));
         return self::logErrors(
             $t->getMessage(),
             $t->getFile(),
@@ -232,11 +225,10 @@ class ErrorHandler implements ErrorHandlerInterface
      * @version         1.0.2, 03.12.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          bool
      * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
      */
-    public static function logNotFound()
+    public static function logNotFound(): bool
     {
         $logFolder = self::$logFolder."/404/".date("Y")."/".date("m")."/";
         $logFile = "404_".date("Y_m_d").".log";
@@ -284,11 +276,10 @@ class ErrorHandler implements ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $username       username used for login
-     * @return          bool
      * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
      */
-    public static function logFailedLogin(string $username)
+    public static function logFailedLogin(string $username): bool
     {
         $logFolder = self::$logFolder."/login/".date("Y")."/".date("m")."/";
         $logFile = "login_".date("Y_m_d").".log";
@@ -331,7 +322,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $logFolder      folder to write logfiles to
-     * @return          void
      * @uses            self::$logFolder
      */
     public static function setLogFolder(string $logFolder) : void
@@ -348,7 +338,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @since           1.0.5, 04.01.2021, created
      * @copyright       tourasia
      * @param           bool            $printErrors    whether to print errors or not
-     * @return          void
      * @uses            self::$printErrors
      */
     public static function printErrors(bool $printErrors) : void
@@ -378,10 +367,10 @@ class ErrorHandler implements ErrorHandlerInterface
             array_shift($trace);                                // remove call to this method
         }
         $length = count($trace);
-        $result = [ ];
+        $result = [];
 
         for ($i = 0; $i < $length; $i++) {
-            $result[] = $space . "#" . $i . substr($trace[$i], strpos($trace[$i], " "));  // replace '#someNum' with '#$i', set the right ordering
+            $result[] = $space."#".$i.substr($trace[$i], strpos($trace[$i], " "));  // replace '#someNum' with '#$i', set the right ordering
         }
 
         if ($level !== 0) {
@@ -411,13 +400,12 @@ class ErrorHandler implements ErrorHandlerInterface
      * @version         1.0.0, 16.11.2020
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
-     * @return          string
      */
     private static function getRequestUrl() : string
     {
         if (isset($_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI'])) {
             return "request url: ".
-                (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://".
+                (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http")."://".
                 $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
         } elseif (isset($_SERVER['REQUEST_URI'])) {
             return "request url: ".$_SERVER['REQUEST_URI'];
@@ -435,27 +423,27 @@ class ErrorHandler implements ErrorHandlerInterface
      * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           int             $errno          an error number
-     * @return          string
      */
     private static function getErrorCode(int $errno) : string
     {
         $errorTranslation = [
-            1 => "Error",
-            2 => "Warning",
-            4 => "Parse",
-            8 => "Notice",
-            16 => "Core error",
-            32 => "Core Warning",
-            64 => "Compile Error",
-            128 => "Compile Warning",
-            256 => "User error",
-            512 => "User warning",
-            1024 => "User notice",
-            2048 => "Strict",
-            4096 => "Recoverable error",
-            8192 => "Deprecated",
+            1     => "Error",
+            2     => "Warning",
+            4     => "Parse",
+            8     => "Notice",
+            16    => "Core error",
+            32    => "Core Warning",
+            64    => "Compile Error",
+            128   => "Compile Warning",
+            256   => "User error",
+            512   => "User warning",
+            1024  => "User notice",
+            2048  => "Strict",
+            4096  => "Recoverable error",
+            8192  => "Deprecated",
             16384 => "User Deprecated",
-            32767 => "All" ];
+            32767 => "All"
+        ];
 
         return $errorTranslation[$errno] ?? "";
     }
@@ -468,7 +456,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @version         1.0.3, 03.12.2020
      * @since           1.0.1, 30.11.2020, created
      * @copyright       tourasia
-     * @return          string
      */
     private static function getIp() : string
     {
