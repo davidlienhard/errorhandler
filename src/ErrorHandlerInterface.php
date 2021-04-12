@@ -4,8 +4,6 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.6, 05.01.2021
- * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
 
@@ -17,8 +15,6 @@ namespace DavidLienhard\ErrorHandler;
  * interface for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.6, 05.01.2021
- * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
 interface ErrorHandlerInterface
@@ -27,8 +23,6 @@ interface ErrorHandlerInterface
      * sets itself as error handler
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      */
     public static function setHandler() : void;
@@ -38,8 +32,6 @@ interface ErrorHandlerInterface
      * writes the given data into a logfile
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $errstr         the error string
      * @param           string          $errfile        filename in which the error happened
@@ -60,8 +52,6 @@ interface ErrorHandlerInterface
      * callback function for set_error_handler. passes date on to logError
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.4, 16.12.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           int             $errno          an error number
      * @param           string          $errstr         the error string
@@ -82,8 +72,6 @@ interface ErrorHandlerInterface
      * callback function for set_error_handler. passes date on to logError
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @uses            self::logErrors()
      * @uses            self::getRequestUrl()
@@ -107,8 +95,6 @@ interface ErrorHandlerInterface
      * method to log an a 404 request
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      */
     public static function logNotFound(): bool;
@@ -118,8 +104,6 @@ interface ErrorHandlerInterface
      * method to log a failed login
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $username       username used for login
      */
@@ -130,8 +114,6 @@ interface ErrorHandlerInterface
      * sets the folder to log to
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $logFolder      folder to write logfiles to
      */
@@ -142,8 +124,6 @@ interface ErrorHandlerInterface
      * whether to print errors or not
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.6, 05.01.2021
-     * @since           1.0.6, 05.01.2021, created
      * @copyright       tourasia
      * @param           bool            $printErrors    whether to print errors or not
      * @uses            self::$printErrors
