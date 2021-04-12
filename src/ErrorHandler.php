@@ -4,8 +4,6 @@
  *
  * @package         tourBase
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.5, 04.01.2021
- * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
 
@@ -19,8 +17,6 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
  * class for improved error handling and logging
  *
  * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @version         1.0.5, 04.01.2021
- * @since           1.0.0, 16.11.2020, created
  * @copyright       tourasia
  */
 class ErrorHandler implements ErrorHandlerInterface
@@ -40,8 +36,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * sets itself as error handler
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      */
     public static function setHandler() : void
@@ -55,8 +49,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * writes the given data into a logfile
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.5, 04.01.2021
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $errstr         the error string
      * @param           string          $errfile        filename in which the error happened
@@ -124,8 +116,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * callback function for set_error_handler. passes date on to logError
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.4, 16.12.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           int             $errno          an error number
      * @param           string          $errstr         the error string
@@ -163,8 +153,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * callback function for set_error_handler. passes date on to logError
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @uses            self::getErrorCode()
      * @uses            self::logErrors()
@@ -198,8 +186,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * method to log an exception
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           \Throwable      $t              the exception/throwable to log
      * @uses            self::getTraceAsArray()
@@ -222,8 +208,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * method to log an a 404 request
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.2, 03.12.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
@@ -272,8 +256,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * method to log a failed login
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.2, 03.12.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $username       username used for login
      * @uses            self::$logFolder
@@ -318,8 +300,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * sets the folder to log to
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           string          $logFolder      folder to write logfiles to
      * @uses            self::$logFolder
@@ -334,8 +314,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * whether to print errors or not
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.5, 04.01.2021
-     * @since           1.0.5, 04.01.2021, created
      * @copyright       tourasia
      * @param           bool            $printErrors    whether to print errors or not
      * @uses            self::$printErrors
@@ -350,8 +328,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * callback function for set_error_handler. passes date on to logError
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           \Throwable      $t              returns the complete stack trace of a throwable including previous
      * @param           bool            $isError        if set to true the first line of the trace will be remove (call to trigger_error)
@@ -397,8 +373,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * returns the request url if possible
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      */
     private static function getRequestUrl() : string
@@ -419,8 +393,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * returns the error code from a number
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.0, 16.11.2020
-     * @since           1.0.0, 16.11.2020, created
      * @copyright       tourasia
      * @param           int             $errno          an error number
      */
@@ -453,8 +425,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * returns the clients ip-address
      *
      * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @version         1.0.3, 03.12.2020
-     * @since           1.0.1, 30.11.2020, created
      * @copyright       tourasia
      */
     private static function getIp() : string
