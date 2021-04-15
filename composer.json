@@ -1,6 +1,6 @@
 {
     "name": "davidlienhard/errorhandler",
-    "license": "proprietary",
+    "license": ["MIT"],
     "description": "🐘 php library for easy error handling",
     "keywords": [ "error", "errorhandler", "php", "library" ],
     "type": "libary",
