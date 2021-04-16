@@ -16,10 +16,10 @@
                 "reference": "03f8f2e6a78c2826637fdc01d779682f941c051e"
             },
             "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/davidlienhard/coding-standard/zipball/03f8f2e6a78c2826637fdc01d779682f941c051e",
+                "type": "tar",
+                "url": "https://packages.tourbase.ch/dist/davidlienhard/coding-standard/davidlienhard-coding-standard-03f8f2e6a78c2826637fdc01d779682f941c051e-zip-38ab1e.tar",
                 "reference": "03f8f2e6a78c2826637fdc01d779682f941c051e",
-                "shasum": ""
+                "shasum": "e6c9e4750f823b597cbc3b2475b0fd863cb8f24b"
             },
             "require": {
                 "php": "^8.0",

@@ -74,13 +74,13 @@ class ErrorHandler implements ErrorHandlerInterface
         $referer = isset($_SERVER['HTTP_REFERER']) ? ", referer: ".$_SERVER['HTTP_REFERER']." " : "";
         $requestUrl = self::getRequestUrl();
         $requestUrl = $requestUrl !== "" ? "\t".$requestUrl."\n" : "";
-        $errorMessage = ($requestUrl != "" || $errmessage != "" ? "\n" : "").$requestUrl.$errmessage;
+        $errorMessage = ($requestUrl !== "" || $errmessage !== "" ? "\n" : "").$requestUrl.$errmessage;
 
         $line =
             "[".date("r")."] ".
             $client.
             "PHP ".self::getErrorCode($errno).": ".
-            $errstr.($errstr != "" ? " " : "").
+            $errstr.($errstr !== "" ? " " : "").
             "in ".$errfile.":".
             $errline." ".
             "(".$errno.")".
@@ -132,7 +132,7 @@ class ErrorHandler implements ErrorHandlerInterface
         int $errline,
         array $errcontext = []
     ) : bool {
-        if (error_reporting() == 0) {
+        if (error_reporting() === 0) {
             return true;
         }
 
@@ -221,7 +221,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $requestUrl = self::getRequestUrl();
         $requestMethod = isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] !== "" ? " (".$_SERVER['REQUEST_METHOD'].")" : "";
         $referer = isset($_SERVER['HTTP_REFERER']) ? ", referer: ".$_SERVER['HTTP_REFERER']." " : "";
-        $ua = isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT'] != "" ? ", useragent: ".$_SERVER['HTTP_USER_AGENT']." " : "";
+        $ua = isset($_SERVER['HTTP_USER_AGENT']) && $_SERVER['HTTP_USER_AGENT'] !== "" ? ", useragent: ".$_SERVER['HTTP_USER_AGENT']." " : "";
 
         $line =
             "[".date("r")."] ".
