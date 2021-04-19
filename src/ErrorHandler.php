@@ -3,8 +3,8 @@
  * contains ErrorHandling class
  *
  * @package         tourBase
- * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @copyright       tourasia
+ * @author          David Lienhard <github@lienhard.win>
+ * @copyright       David Lienhard
  */
 
 declare(strict_types=1);
@@ -16,8 +16,8 @@ use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
 /**
  * class for improved error handling and logging
  *
- * @author          David Lienhard <david.lienhard@tourasia.ch>
- * @copyright       tourasia
+ * @author          David Lienhard <github@lienhard.win>
+ * @copyright       David Lienhard
  */
 class ErrorHandler implements ErrorHandlerInterface
 {
@@ -35,8 +35,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * sets itself as error handler
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      */
     public static function setHandler() : void
     {
@@ -48,8 +48,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * writes the given data into a logfile
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           string          $errstr         the error string
      * @param           string          $errfile        filename in which the error happened
      * @param           int             $errline        line in which the error happened
@@ -115,8 +115,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * callback function for set_error_handler. passes date on to logError
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           int             $errno          an error number
      * @param           string          $errstr         the error string
      * @param           string          $errfile        filename in which the error happened
@@ -152,8 +152,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * callback function for set_error_handler. passes date on to logError
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @uses            self::getErrorCode()
      * @uses            self::logErrors()
      */
@@ -185,8 +185,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * method to log an exception
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           \Throwable      $t              the exception/throwable to log
      * @uses            self::getTraceAsArray()
      * @uses            self::logErrors()
@@ -207,8 +207,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * method to log an a 404 request
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
      */
@@ -255,8 +255,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * method to log a failed login
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           string          $username       username used for login
      * @uses            self::$logFolder
      * @uses            self::getRequestUrl()
@@ -299,8 +299,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * sets the folder to log to
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           string          $logFolder      folder to write logfiles to
      * @uses            self::$logFolder
      */
@@ -313,8 +313,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * whether to print errors or not
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           bool            $printErrors    whether to print errors or not
      * @uses            self::$printErrors
      */
@@ -327,8 +327,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * callback function for set_error_handler. passes date on to logError
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           \Throwable      $t              returns the complete stack trace of a throwable including previous
      * @param           bool            $isError        if set to true the first line of the trace will be remove (call to trigger_error)
      * @param           int             $level          level of recursion
@@ -372,8 +372,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * returns the request url if possible
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      */
     private static function getRequestUrl() : string
     {
@@ -392,8 +392,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * returns the error code from a number
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      * @param           int             $errno          an error number
      */
     private static function getErrorCode(int $errno) : string
@@ -424,8 +424,8 @@ class ErrorHandler implements ErrorHandlerInterface
     /**
      * returns the clients ip-address
      *
-     * @author          David Lienhard <david.lienhard@tourasia.ch>
-     * @copyright       tourasia
+     * @author          David Lienhard <github@lienhard.win>
+     * @copyright       David Lienhard
      */
     private static function getIp() : string
     {
