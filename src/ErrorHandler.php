@@ -11,7 +11,7 @@ declare(strict_types=1);
 
 namespace DavidLienhard\ErrorHandler;
 
-use \DavidLienhard\ErrorHandler\ErrorHandlerInterface;
+use DavidLienhard\ErrorHandler\ErrorHandlerInterface;
 
 /**
  * class for improved error handling and logging
@@ -162,8 +162,6 @@ class ErrorHandler implements ErrorHandlerInterface
         $lastError = error_get_last();
 
         if ($lastError !== null && is_array($lastError)) {
-            $errorCode = self::getErrorCode($lastError['type']);
-
             $errorMessage = explode("\n", $lastError['message']);
             foreach ($errorMessage as $key => $value) {
                 $errorMessage[$key] = "\t".$value;
@@ -349,14 +347,12 @@ class ErrorHandler implements ErrorHandlerInterface
             $result[] = $space."#".$i.substr($trace[$i], strpos($trace[$i], " "));  // replace '#someNum' with '#$i', set the right ordering
         }
 
-        if ($level !== 0) {
-            $trace = array_merge(
+        $trace = $level !== 0
+            ? array_merge(
                 [ $space.$t->getMessage()." in ".$t->getFile().":".$t->getLine()." (".get_class($t).")" ],
                 $result
-            );
-        } else {
-            $trace = $result;
-        }
+            )
+            : $result;
 
         $previous = $t->getPrevious();
         if ($previous !== null) {
