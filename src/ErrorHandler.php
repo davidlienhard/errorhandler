@@ -347,10 +347,12 @@ class ErrorHandler implements ErrorHandlerInterface
             $result[] = $space."#".$i.substr($trace[$i], strpos($trace[$i], " "));  // replace '#someNum' with '#$i', set the right ordering
         }
 
-        $trace = $level !== 0 ? array_merge(
-            [ $space.$t->getMessage()." in ".$t->getFile().":".$t->getLine()." (".get_class($t).")" ],
-            $result
-        ) : $result;
+        $trace = $level !== 0
+            ? array_merge(
+                [ $space.$t->getMessage()." in ".$t->getFile().":".$t->getLine()." (".get_class($t).")" ],
+                $result
+            )
+            : $result;
 
         $previous = $t->getPrevious();
         if ($previous !== null) {
