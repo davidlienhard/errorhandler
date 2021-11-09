@@ -343,7 +343,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $result = [];
 
         for ($i = 0; $i < $length; $i++) {
-            $result[] = $space."#".$i.substr($trace[$i], strpos($trace[$i], " "));  // replace '#someNum' with '#$i', set the right ordering
+            $result[] = $space."#".$i.substr($trace[$i], strpos($trace[$i], " ") ?: 0);  // replace '#someNum' with '#$i', set the right ordering
         }
 
         $trace = $level !== 0
