@@ -195,7 +195,7 @@ class ErrorHandler implements ErrorHandlerInterface
             $t->getMessage(),
             $t->getFile(),
             $t->getLine(),
-            $t->getCode(),
+            intval($t->getCode()),
             $errMessage
         );
     }
