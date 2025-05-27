@@ -160,7 +160,7 @@ class ErrorHandler implements ErrorHandlerInterface
     {
         $lastError = error_get_last();
 
-        if ($lastError !== null && is_array($lastError)) {
+        if ($lastError !== null) {
             $errorMessage = explode("\n", $lastError['message']);
             foreach ($errorMessage as $key => $value) {
                 $errorMessage[$key] = "\t".$value;
@@ -329,7 +329,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @param           \Throwable      $t              returns the complete stack trace of a throwable including previous
      * @param           bool            $isError        if set to true the first line of the trace will be remove (call to trigger_error)
      * @param           int             $level          level of recursion
-     * @return          array
      * @uses            self::getTraceAsArray()
      */
     private static function getTraceAsArray(\Throwable $t, bool $isError = false, int $level = 0) : array
