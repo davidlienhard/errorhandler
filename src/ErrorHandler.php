@@ -329,7 +329,6 @@ class ErrorHandler implements ErrorHandlerInterface
      * @param           \Throwable      $t              returns the complete stack trace of a throwable including previous
      * @param           bool            $isError        if set to true the first line of the trace will be remove (call to trigger_error)
      * @param           int             $level          level of recursion
-     * @return          array
      * @uses            self::getTraceAsArray()
      */
     private static function getTraceAsArray(\Throwable $t, bool $isError = false, int $level = 0) : array
