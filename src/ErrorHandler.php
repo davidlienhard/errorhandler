@@ -160,7 +160,7 @@ class ErrorHandler implements ErrorHandlerInterface
     {
         $lastError = error_get_last();
 
-        if ($lastError !== null && is_array($lastError)) {
+        if ($lastError !== null) {
             $errorMessage = explode("\n", $lastError['message']);
             foreach ($errorMessage as $key => $value) {
                 $errorMessage[$key] = "\t".$value;
