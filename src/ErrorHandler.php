@@ -374,7 +374,7 @@ class ErrorHandler implements ErrorHandlerInterface
         $httpsOn = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === "on";
         $httpsForwardedOn = isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === "https";
 
-        $proto = $httpsOn || $httpsForwardedOn "https" : "http";
+        $proto = $httpsOn || $httpsForwardedOn ? "https" : "http";
 
         if (isset($_SERVER['HTTP_HOST'], $_SERVER['REQUEST_URI'])) {
             return "request url: ".$proto."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
